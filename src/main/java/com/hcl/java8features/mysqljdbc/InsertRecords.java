@@ -54,7 +54,7 @@ public class InsertRecords {
 
         } catch (SQLException ex) {
 
-            Logger lgr = Logger.getLogger(MySqlTest.class.getName());
+            Logger lgr = Logger.getLogger(InsertRecords.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
 	}
