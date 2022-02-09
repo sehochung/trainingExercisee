@@ -8,13 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import com.hcl.java8features.Employee;
 
-public class RetrieveEmployees {
+public class FilterEmployees {
 	private static final String QUERY = "SELECT * FROM demo2.Employee";
 
 	public static void main(String[] args) {
@@ -27,6 +24,8 @@ public class RetrieveEmployees {
 
 			ResultSet rs = preparedStatement.executeQuery();
 
+			List<Employee> eList = new ArrayList<>();
+
 			System.out.println("**** Original list of records ****");
 			while (rs.next()) {
 				int id = rs.getInt("EmpID");
@@ -35,7 +34,18 @@ public class RetrieveEmployees {
 				int salary = rs.getInt("Salary");
 				int age = rs.getInt("Age");
 
+				if (salary > 5000 && name.startsWith("B") && age > 21) {
+					Employee e = new Employee(id, name, dob, salary, age);
+					eList.add(e);
+				}
+
 				System.out.println(id + "," + name + "," + dob + "," + salary + "," + age);
+			}
+
+			System.out.println("**** Filtered list of records ****");
+			for (Employee e : eList) {
+				System.out.println(e.getEmpID() + "," + e.getEmpName() + "," + e.getDOB() + "," + e.getSalary() + ","
+						+ e.getAge());
 			}
 
 		}
