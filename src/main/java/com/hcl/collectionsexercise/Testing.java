@@ -20,6 +20,7 @@ public class Testing {
 		/*
 		 *  sort by patient id
 		 */
+		System.out.println("ID SORT");
 		System.out.println("Before sorting...");
 		for (Patient temp : plist)
 			System.out.println(temp.getPatientID());
